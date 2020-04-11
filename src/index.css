@@ -1,9 +1,12 @@
 :root {
-  --color-red: rgba(167, 18, 18, 0.831);
-  --color-primary: rgb(57, 93, 194);
+  --color-red: rgba(194, 42, 42, 0.831);
+  --color-primary: rgb(43, 71, 147);
 
   --color-bg: hsl(0, 0%, 100%);
-  --color-charcoal: hsl(0, 10%, 29%);
+  --color-charcoal: hsl(0, 1%, 24%);
+
+  --heigth-big: hsl(0, 10%, 29%);
+  --heigth-med: hsl(0, 10%, 29%);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
@@ -15,13 +18,14 @@ body {
 
 .count-block {
   background: var(--color-bg);
-  border: 5px solid var(--color-primary);
+  color: var(--color-primary);
+  border: 3px solid var(--color-primary);
   float: left;
-  font-size: 2000%;
+  font-size: 100px;
   font-weight: bold;
   vertical-align: middle;
-  height: 700px;
-  line-height: 700px;
+  height: 300px;
+  line-height: 300px;
   margin-top: 5px;
   text-align: center;
   width: 100%;
@@ -29,14 +33,14 @@ body {
 
 .time-block {
   background: var(--color-bg);
-  border: 5px solid var(--color-charcoal);
+  border: 3px solid var(--color-charcoal);
   color: var(--color-charcoal);
   float: left;
-  font-size: 50px;
+  font-size: 20px;
   font-weight: bold;
   vertical-align: middle;
-  height: 150px;
-  line-height: 150px;
+  height: 75px;
+  line-height: 75px;
   margin-top: 3px;
   text-align: center;
   width: 100%;
@@ -44,14 +48,14 @@ body {
 
 .fastest-block {
   background: var(--color-bg);
-  border: 5px solid var(--color-red);
+  border: 3px solid var(--color-red);
   color: var(--color-red);
   float: left;
-  font-size: 50px;
+  font-size: 20px;
   font-weight: bold;
   vertical-align: middle;
-  height: 150px;
-  line-height: 150px;
+  height: 75px;
+  line-height: 75px;
   /* margin-right: -1px; */
   margin-top: 2px;
   text-align: center;

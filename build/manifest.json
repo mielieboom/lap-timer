@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lap Timer",
+  "name": "Simple Lap Timer",
   "icons": [
     {
       "src": "favicon.ico",
