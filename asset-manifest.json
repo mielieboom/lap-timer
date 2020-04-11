@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/lap-timer/static/css/main.914f268b.chunk.css",
-    "main.js": "/lap-timer/static/js/main.8bf2878a.chunk.js",
-    "main.js.map": "/lap-timer/static/js/main.8bf2878a.chunk.js.map",
+    "main.js": "/lap-timer/static/js/main.0507352d.chunk.js",
+    "main.js.map": "/lap-timer/static/js/main.0507352d.chunk.js.map",
     "runtime-main.js": "/lap-timer/static/js/runtime-main.0bdb79eb.js",
     "runtime-main.js.map": "/lap-timer/static/js/runtime-main.0bdb79eb.js.map",
     "static/js/2.eb04fb3b.chunk.js": "/lap-timer/static/js/2.eb04fb3b.chunk.js",
     "static/js/2.eb04fb3b.chunk.js.map": "/lap-timer/static/js/2.eb04fb3b.chunk.js.map",
     "index.html": "/lap-timer/index.html",
-    "precache-manifest.77b5fb7ec1ec5c92b261c3cdf5d96650.js": "/lap-timer/precache-manifest.77b5fb7ec1ec5c92b261c3cdf5d96650.js",
+    "precache-manifest.939d5c492cf74615df5a8efc0871ff29.js": "/lap-timer/precache-manifest.939d5c492cf74615df5a8efc0871ff29.js",
     "service-worker.js": "/lap-timer/service-worker.js",
     "static/css/main.914f268b.chunk.css.map": "/lap-timer/static/css/main.914f268b.chunk.css.map",
     "static/js/2.eb04fb3b.chunk.js.LICENSE.txt": "/lap-timer/static/js/2.eb04fb3b.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0bdb79eb.js",
     "static/js/2.eb04fb3b.chunk.js",
     "static/css/main.914f268b.chunk.css",
-    "static/js/main.8bf2878a.chunk.js"
+    "static/js/main.0507352d.chunk.js"
   ]
 }
