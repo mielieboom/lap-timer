@@ -1,26 +1,49 @@
+:root {
+  --color-red: rgba(167, 18, 18, 0.831);
+  --color-primary: rgb(57, 93, 194);
+
+  --color-bg: hsl(0, 0%, 100%);
+  --color-charcoal: hsl(0, 10%, 29%);
+}
+
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
 }
 
 .count-block {
-  background: rgb(255, 255, 255);
-  border: 5px solid rgb(57, 93, 194);
+  background: var(--color-bg);
+  border: 5px solid var(--color-primary);
   float: left;
-  font-size: 350px;
+  font-size: 2000%;
   font-weight: bold;
   vertical-align: middle;
   height: 700px;
   line-height: 700px;
-  /* margin-right: -1px;
-  margin-top: -1px;   */
+  margin-top: 5px;
   text-align: center;
   width: 100%;
 }
 
 .time-block {
-  background: rgb(255, 255, 255);
-  border: 5px solid rgb(57, 93, 194);
+  background: var(--color-bg);
+  border: 5px solid var(--color-charcoal);
+  color: var(--color-charcoal);
+  float: left;
+  font-size: 50px;
+  font-weight: bold;
+  vertical-align: middle;
+  height: 150px;
+  line-height: 150px;
+  margin-top: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.fastest-block {
+  background: var(--color-bg);
+  border: 5px solid var(--color-red);
+  color: var(--color-red);
   float: left;
   font-size: 50px;
   font-weight: bold;
@@ -28,7 +51,7 @@ body {
   height: 150px;
   line-height: 150px;
   /* margin-right: -1px; */
-  margin-top: -5px;
+  margin-top: 5px;
   text-align: center;
   width: 100%;
 }

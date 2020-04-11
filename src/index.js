@@ -2,6 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+const minIndex = (arr) => {
+  let min_value = Number.MAX_SAFE_INTEGER;
+  let min_index = -1;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] <= min_value) {
+      min_value = arr[i];
+      min_index = i;
+    }
+  }
+
+  console.log("minIndex => ", min_index, min_value);
+  return min_index;
+};
+
 const millisToString = (duration) => {
   console.log("duration", duration);
   const millis_t = 1;
@@ -15,45 +29,74 @@ const millisToString = (duration) => {
   const minutes = Math.floor(duration / minutes_t);
   const seconds = duration / seconds_t;
 
-  return `${hours}:${minutes}:${seconds}`;
+  return `${minutes} min ${seconds} sec`;
 };
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [],
-      count: 0,
+      history: null,
+      prev_time: null,
+      count: null,
     };
   }
 
   handleClick = () => {
-    const history = this.state.history;
-    const new_count = this.state.count + 1;
+    if (this.state.count === null) {
+      // first click
+      this.setState({
+        history: [],
+        count: 1,
+        prev_time: Date.now(),
+      });
+    } else {
+      const now = Date.now();
+      const new_time = now - this.state.prev_time;
 
-    this.setState({
-      history: history.concat([Date.now()]), //[...history, squares],
-      count: new_count,
-    });
+      this.setState({
+        history: this.state.history.concat([new_time]), //[...history, squares],
+        count: this.state.count + 1,
+        prev_time: now,
+      });
+    }
   };
 
   render() {
+    if (this.state.count === null) {
+      return (
+        <div onClick={this.handleClick}>
+          <div className="count-block">{"GO"}</div>          
+        </div>
+      );
+    }
+
     const history = this.state.history;
+    const fastest_lap = minIndex(history);
+    const fastest_text = `FASTEST: ${fastest_lap + 1} - ${millisToString(
+      history[fastest_lap]
+    )}`;
+    const fastest =
+      fastest_lap >= 0 ? (
+        <div className="fastest-block">{fastest_text}</div>
+      ) : null;
+
     const times = history
-      .map((v, i, arr) => {
-        if (i > 0) {
-          return (          
-              <div className="time-block" key={i}>
-                {i} - {millisToString(arr[i] - arr[i - 1])}
-              </div>            
-          );
-        }
+      .map((v, i) => {
+        const cls = i === fastest_lap ? "fastest-block" : "time-block";
+
+        return (
+          <div className={cls} key={i}>
+            {i + 1} - {millisToString(v)}
+          </div>
+        );
       })
       .reverse();
 
     return (
       <div onClick={this.handleClick}>
-        <div className="count-block">{this.state.count || "START"}</div>
+        <div className="count-block">{this.state.count || "GO"}</div>
+        {fastest}
         {times}
       </div>
     );
