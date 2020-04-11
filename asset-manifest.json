@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/lap-timer/static/css/main.6169ceb5.chunk.css",
-    "main.js": "/lap-timer/static/js/main.cf958aef.chunk.js",
-    "main.js.map": "/lap-timer/static/js/main.cf958aef.chunk.js.map",
+    "main.css": "/lap-timer/static/css/main.914f268b.chunk.css",
+    "main.js": "/lap-timer/static/js/main.8bf2878a.chunk.js",
+    "main.js.map": "/lap-timer/static/js/main.8bf2878a.chunk.js.map",
     "runtime-main.js": "/lap-timer/static/js/runtime-main.0bdb79eb.js",
     "runtime-main.js.map": "/lap-timer/static/js/runtime-main.0bdb79eb.js.map",
     "static/js/2.eb04fb3b.chunk.js": "/lap-timer/static/js/2.eb04fb3b.chunk.js",
     "static/js/2.eb04fb3b.chunk.js.map": "/lap-timer/static/js/2.eb04fb3b.chunk.js.map",
     "index.html": "/lap-timer/index.html",
-    "precache-manifest.e67b22da13ed728cee8400e60681f7cb.js": "/lap-timer/precache-manifest.e67b22da13ed728cee8400e60681f7cb.js",
+    "precache-manifest.77b5fb7ec1ec5c92b261c3cdf5d96650.js": "/lap-timer/precache-manifest.77b5fb7ec1ec5c92b261c3cdf5d96650.js",
     "service-worker.js": "/lap-timer/service-worker.js",
-    "static/css/main.6169ceb5.chunk.css.map": "/lap-timer/static/css/main.6169ceb5.chunk.css.map",
+    "static/css/main.914f268b.chunk.css.map": "/lap-timer/static/css/main.914f268b.chunk.css.map",
     "static/js/2.eb04fb3b.chunk.js.LICENSE.txt": "/lap-timer/static/js/2.eb04fb3b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0bdb79eb.js",
     "static/js/2.eb04fb3b.chunk.js",
-    "static/css/main.6169ceb5.chunk.css",
-    "static/js/main.cf958aef.chunk.js"
+    "static/css/main.914f268b.chunk.css",
+    "static/js/main.8bf2878a.chunk.js"
   ]
 }
