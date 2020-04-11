@@ -27,10 +27,37 @@ const millisToString = (duration) => {
   const days = Math.floor(duration / days_t);
   const hours = Math.floor(duration / hours_t);
   const minutes = Math.floor(duration / minutes_t);
-  const seconds = duration / seconds_t;
+  const seconds = (duration / seconds_t).toFixed(3);
 
   return `${minutes} min ${seconds} sec`;
 };
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: Date.now(),
+      start: props.start || 0,
+    };
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 100);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: Date.now(),
+      start: this.state.start,
+    });
+  }
+  render() {
+    const { time, start } = this.state;
+    const time_text = `TOTAL: ${millisToString(time - start)}`;
+    return <div className="time-block">{time_text}</div>;
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -66,7 +93,7 @@ class App extends React.Component {
     if (this.state.count === null) {
       return (
         <div onClick={this.handleClick}>
-          <div className="count-block">{"GO"}</div>          
+          <div className="count-block">{"GO"}</div>
         </div>
       );
     }
@@ -96,6 +123,7 @@ class App extends React.Component {
     return (
       <div onClick={this.handleClick}>
         <div className="count-block">{this.state.count || "GO"}</div>
+        <Clock className="time-block" start={Date.now()} />
         {fastest}
         {times}
       </div>

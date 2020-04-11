@@ -6,8 +6,10 @@
   --color-charcoal: hsl(0, 10%, 29%);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px "Roboto Mono", monospace;
   margin: 20px;
 }
 
@@ -35,7 +37,7 @@ body {
   vertical-align: middle;
   height: 150px;
   line-height: 150px;
-  margin-top: 5px;
+  margin-top: 3px;
   text-align: center;
   width: 100%;
 }
@@ -51,7 +53,7 @@ body {
   height: 150px;
   line-height: 150px;
   /* margin-right: -1px; */
-  margin-top: 5px;
+  margin-top: 2px;
   text-align: center;
   width: 100%;
 }
