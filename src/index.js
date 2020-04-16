@@ -76,13 +76,13 @@ const millisToString = (duration) => {
   const days_t = 24 * hours_t;
 
   const days = Math.floor(duration / days_t);
-  const hours = Math.floor((duration % days_t) / hours_t);
-  const minutes = Math.floor((duration % hours_t) / minutes_t).to;
-  const seconds = ((duration % minutes_t) / seconds_t).toFixed(3);
+  const hours = `${Math.floor((duration % days_t) / hours_t)}`.padStart(2,'0');
+  const minutes = `${Math.floor((duration % hours_t) / minutes_t)}`.padStart(2,'0');
+  const seconds = `${((duration % minutes_t) / seconds_t).toFixed(3)}`.padStart(2,'0');
 
-  let result = `${minutes || 0}m ${seconds}s`;
-  result = hours ? `${hours}h ` + result : result;
-  result = days ? `${days}d ` + result : result;
+  let result = `${minutes}:${seconds}`;
+  result = hours != "00" ? `${hours}:` + result : result;
+  result = days ? `${days} days ` + result : result;
 
   return result;
 };

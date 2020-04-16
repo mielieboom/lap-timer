@@ -17,6 +17,10 @@ body {
   margin: 20px;
 }
 
+button {
+  font: 14px "Roboto Mono", monospace;
+}
+
 .count-block {
   background: var(--color-bg);
   color: var(--color-primary);
