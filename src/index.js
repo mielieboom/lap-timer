@@ -18,6 +18,56 @@ const minIndex = (arr) => {
   return min_index;
 };
 
+function Counter(props) {
+  return (
+    <button
+      className="count-block"
+      onClick={() => props.handler()}
+      onTouchEnd={() => props.handler()}
+    >
+      {props.count || "GO"}
+    </button>
+  );
+}
+
+function TimeInfo(props) {
+  return (
+    <div className="time-block">
+      {props.name}: {millisToString(props.duration)}
+    </div>
+  );
+}
+
+function TimeList(props) {
+  const { history } = props;
+  const fastest_lap = minIndex(history);
+
+  return history
+    .map((v, i) => {
+      const cls = i === fastest_lap ? "fastest-block" : "time-block";
+
+      return (
+        <div className={cls} key={i}>
+          {i + 1} - {millisToString(v)}
+        </div>
+      );
+    })
+    .reverse();
+}
+
+function StartStop(props) {
+  const { handler, is_running } = props;
+  const [cls, text] = is_running
+    ? ["fastest-block", "STOP"]
+    : ["info-block", "RESUME"];
+
+  return (
+    <button className={cls} onClick={handler}>
+      {text}
+    </button>
+  );
+}
+
 const millisToString = (duration) => {
   const millis_t = 1;
   const seconds_t = 1000 * millis_t;
@@ -46,6 +96,7 @@ class App extends React.Component {
       count: null,
       current_time: Date.now(),
       prev_event_time: Date.now(),
+      is_running: false,
     };
   }
 
@@ -57,22 +108,47 @@ class App extends React.Component {
   }
 
   tick() {
-    this.setState({
-      ...this.state,
-      current_time: Date.now(),
-    });
+    const { is_running } = this.state;
+    if (is_running) {
+      this.setState({
+        ...this.state,
+        current_time: Date.now(),
+      });
+    }
   }
 
+  handleStartStop = () => {
+    const now = Date.now();
+    if (this.state.is_running) {
+      this.setState({
+        ...this.setState,
+        is_running: !this.state.is_running,
+      });
+    } else {
+      this.setState({
+        ...this.setState,
+        is_running: !this.state.is_running,
+        prev_event_time: now,
+        current_time: now,
+      });
+    }
+  };
+
   handleClick = () => {
-    const { prev_event_time } = this.state;
+    const { prev_event_time, is_running, count, history } = this.state;
     const now = Date.now();
     const delta_time = now - prev_event_time;
+
+    if (!is_running && count != null) {
+      this.handleStartStop();
+      return;
+    }
 
     if (delta_time < click_time_tol) {
       return; // debounce double events like onTouchUp and onClick
     }
 
-    if (this.state.count === null) {
+    if (count === null) {
       // first click
       this.setState({
         ...this.state,
@@ -81,14 +157,14 @@ class App extends React.Component {
         prev_time: now,
         prev_event_time: now,
         current_time: now,
+        start_time: now,
+        is_running: true,
       });
     } else {
-      const new_time = now - this.state.prev_time;
-
       this.setState({
         ...this.state,
-        history: this.state.history.concat([new_time]), //[...history, squares],
-        count: this.state.count + 1,
+        history: history.concat([delta_time]), //[...history, squares],
+        count: count + 1,
         prev_time: now,
         prev_event_time: now,
         current_time: now,
@@ -99,50 +175,27 @@ class App extends React.Component {
   render() {
     if (this.state.count === null) {
       return (
-        <div onClick={this.handleClick}>
-          <div className="count-block">{"GO"}</div>
-        </div>
+        <button onClick={this.handleClick} className="count-block">
+          {"GO"}
+        </button>
       );
     }
 
-    const history = this.state.history;
-    const fastest_lap = minIndex(history);
-    const fastest_text = `FASTEST: ${fastest_lap + 1} - ${millisToString(
-      history[fastest_lap]
-    )}`;
-    const fastest =
-      fastest_lap >= 0 ? (
-        <div className="fastest-block">{fastest_text}</div>
-      ) : null;
-
-    const times = history
-      .map((v, i) => {
-        const cls = i === fastest_lap ? "fastest-block" : "time-block";
-
-        return (
-          <div className={cls} key={i}>
-            {i + 1} - {millisToString(v)}
-          </div>
-        );
-      })
-      .reverse();
-
-    const { current_time, prev_event_time } = this.state;
-    const current_lap = (
-      <div className="time-block">
-        CURRENT: {millisToString(current_time - prev_event_time)}
-      </div>
-    );
+    const {
+      history,
+      current_time,
+      start_time,
+      prev_event_time,
+      is_running,
+    } = this.state;
 
     return (
-      <div
-        onClick={() => this.handleClick()}
-        onTouchEnd={() => this.handleClick()}
-      >
-        <div className="count-block">{this.state.count || "GO"}</div>
-        {fastest}
-        {current_lap}
-        {times}
+      <div>
+        <Counter count={this.state.count} handler={this.handleClick} />
+        <StartStop is_running={is_running} handler={this.handleStartStop} />
+        <TimeInfo name={"TOTAL"} duration={current_time - start_time} />
+        <TimeInfo name={"CURRENT"} duration={current_time - prev_event_time} />
+        <TimeList history={history} />
       </div>
     );
   }
